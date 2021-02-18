@@ -1,4 +1,5 @@
 import useWindowDimensions from "./screenDim.js"
+import {Link } from "react-router-dom";
 
 function App() {
 
@@ -10,6 +11,12 @@ function App() {
       <header style = {{fontSize: 24,paddingTop:height *.05, paddingBottom: height *.1, width: width,flex: 1 }}>
         This is a header
       </header>  
+      <Link to="/signIn">
+        <button>
+          Go To Sign in
+        </button>
+      </Link>
+
     </div> );
 }
 
