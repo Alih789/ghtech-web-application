@@ -12,7 +12,7 @@ function App() {
         This is a header
       </header>  
       <Link to="/signIn">
-        <button>
+        <button onClick = {() => window.location.href="/signIn"}>
           Go To Sign in
         </button>
       </Link>
