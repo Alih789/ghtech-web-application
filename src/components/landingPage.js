@@ -11,11 +11,10 @@ function App() {
       <header style = {{fontSize: 24,paddingTop:height *.05, paddingBottom: height *.1, width: width,flex: 1 }}>
         This is a header
       </header>  
-      <Link to="/signIn">
+
         <button onClick = {() => window.location.href="/signIn"}>
           Go To Sign in
         </button>
-      </Link>
 
     </div> );
 }

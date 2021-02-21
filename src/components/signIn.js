@@ -3,31 +3,51 @@ import Button from "react-bootstrap/Button";
 import useWindowDimensions from "./screenDim.js"
 import React, { useState } from 'react';
 import { db } from "../components/services/firestore"
-
-import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 
 
 
-function Authenticated(isAuthorized){
-  (isAuthorized)? window.location.href="/signIn" : window.location.href="/commentPage";
+
+function IsAuthorized(isSigned,Email){
+  var url = "/contacts/"+Email;
+  (isSigned)? window.location.href=url : window.location.href="/signIn" ;  
 }
 
 function isAccount(){
 
 }
 
+function HandleSignUp(Name, Email, Password,){
+
+  db.collection("Users").doc(Email).set({
+    name: Name,
+    email: Email,
+    password: Password,
+    contacts: []
+    });
+
+
+}
+
 
 function App() {  
+  
+  const url = window.location.href;
+
+  if(url.length !=28) window.location.href="/signIn";
+  //console.log(url.length)
 
   const { height, width } = useWindowDimensions();
   
-  const {isSigned, setisSigned} = useState(0);
+  const [signed, setSigned] = useState(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+
+  
 
   return (
     <div className="App" style={{backgroundSize: "cover" ,backgroundImage: "url('https://sgl-assets.imgix.net/files/article_hero/yosemite-glacier-point-sunset-national-park-summer-activities-things-to-do-via-magazine-shutterstock_552174034.jpg?w=1440&h=720&crop=faces,edges')" }} >
@@ -40,9 +60,9 @@ function App() {
         This is another place holder
       </header>
 
-
+      {!signed && (
+        <div>
         <Form.Group size="lg" controlId="name">
-
           <Form.Label>Name</Form.Label>
           <Form.Control
             autoFocus
@@ -69,20 +89,17 @@ function App() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
         </Form.Group>
 
-        <Button block size="lg" type="submit" onClick= {() => {db.collection("Users").add({
-                                                                name: name,
-                                                                email: email,
-                                                                password: password
-                                                                });}}>
+
+        <Button block size="lg" type="submit" onClick= {() => {HandleSignUp(name, email, password);setSigned(true); console.log(signed)}}>
           Sign up
         </Button>
- 
+        </div>
+      )}
 
-      <button>
-        Check your messages!
+      <button onClick= {() => {IsAuthorized(signed,email)}}>
+        Check your Contacts!
       </button>
 
 
