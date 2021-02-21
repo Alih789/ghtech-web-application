@@ -42,6 +42,7 @@ function App() {
     const { height, width } = useWindowDimensions();
 
     const url = window.location.href
+    const url2 = url.substring(0,21)
 
     const email = url.substring(31, url.length);
 
@@ -64,8 +65,8 @@ function App() {
     },[count]);
 
       const contactsList = conNames.map(contact => {
-        return <ul><div onClick = {(e) => console.log("Contact "+contact+ " has been pressed" )}>{contact}</div></ul>;})
-    
+        return <ul><div onClick = {() => (window.location.href=url2+"/"+"msg/"+email+"/"+contact)}>{contact}</div></ul>;})
+  
     
     
 

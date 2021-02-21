@@ -24,7 +24,8 @@ function HandleSignUp(Name, Email, Password,){
     name: Name,
     email: Email,
     password: Password,
-    contacts: []
+    contacts: [],
+    msgLog: []
     });
 
 
