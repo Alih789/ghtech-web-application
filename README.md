@@ -1,1 +1,0 @@
-# ghtech-web-application
