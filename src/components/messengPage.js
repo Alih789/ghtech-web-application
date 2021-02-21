@@ -68,7 +68,7 @@ function App() {
     
 
     const contactsList = msgs.map(msg => {
-        return <ul><div>{msg}</div></ul>;})
+        return <ul><div style = {{textAlign: "right", marginRight: width*.45, fontWeight:"bold",}}>{msg}</div></ul>;})
 
     
 
@@ -76,15 +76,12 @@ function App() {
     <div>
         <div className="App" style={{backgroundSize: "cover" ,backgroundImage: "url('https://sgl-assets.imgix.net/files/article_hero/yosemite-glacier-point-sunset-national-park-summer-activities-things-to-do-via-magazine-shutterstock_552174034.jpg?w=1440&h=720&crop=faces,edges')" }} >
 
-            <header style = {{fontSize: 24,paddingTop:height *.05, paddingBottom: height *.1, width: width, }}>
+            <header style = {{fontSize: 24,paddingTop:height *.05, paddingBottom: height *.1, width: width, fontWeight: "bold" }}>
                 Your messages to {contact}
             </header>  
-            {contactsList}
         
-
-        
-            <Form.Group size="lg" controlId="name" style = {{backgroundColor:"red", marginTop:height*.5}}> 
-                <Form.Label>Message </Form.Label>
+            <Form.Group size="lg" controlId="name" style = {{}}> 
+                <Form.Label style = {{fontWeight: "bold"}}>Message </Form.Label>
                 <Form.Control
                     autoFocus
                     type="name"
@@ -92,9 +89,12 @@ function App() {
                     onChange={(e) => setMsg(e.target.value)}
                 />
                 </Form.Group>
-                <Button block size="lg" type="submit" style={{marginRight: width*.033}} onClick= {() => {handleClick(email,msg)}} onMouseOut = {()=>setCount(count + 1)}>
-                Send
+                <Button block size="lg" type="submit" style={{marginRight: width*.033, fontWeight: "bold"}} onClick= {() => {handleClick(email,msg)}} onMouseOut = {()=>setCount(count + 1)}>
+                    Send
                 </Button>
+                <div style = {{flex: 1}}>
+                    {contactsList}
+                </div>
 
             </div>
 
